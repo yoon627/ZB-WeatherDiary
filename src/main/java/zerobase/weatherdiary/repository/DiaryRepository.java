@@ -1,5 +1,6 @@
 package zerobase.weatherdiary.repository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import zerobase.weatherdiary.domain.Diary;
@@ -15,4 +16,7 @@ public interface DiaryRepository extends JpaRepository<Diary, Integer> {
     List<Diary> findAllByDateBetween(LocalDate startDate, LocalDate endDate);
 
     Diary getFirstByDate(LocalDate date);
+
+    @Transactional //달아주지 않으면 오류
+    void deleteAllByDate(LocalDate date);
 }
