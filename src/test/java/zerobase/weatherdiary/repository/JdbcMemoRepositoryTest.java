@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-@Transactional
+@Transactional //test코드에 transactional작성시 무조건 커밋하지 않는다.
 class JdbcMemoRepositoryTest {
 
     @Autowired
