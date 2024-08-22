@@ -10,14 +10,15 @@ import java.util.List;
 
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
-    //동작방식을 지정해주지 않았지만 Jpa가 알아서 query를 생성해서 데이터를 가져와준다.
+    //동작방식을 지정해주지 않았지만 Jpa 가 알아서 query 를 생성해서 데이터를 가져와준다.
     List<Diary> findAllByDate(LocalDate date);
 
     List<Diary> findAllByDateBetween(LocalDate startDate, LocalDate endDate);
 
     Diary getFirstByDate(LocalDate date);
 
+    //조회를 제외한 C,U,D가 포함된 DB에 직접적인 변화를 주는
+    // 커스텀 트랜잭션을 날려줄때는 transactional 을 명시해주는 것이 좋다
     @Transactional
-        //달아주지 않으면 오류
     void deleteAllByDate(LocalDate date);
 }
